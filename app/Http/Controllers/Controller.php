@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
+use App\Models\Report;
+use Illuminate\Http\Request;
 
-class Controller extends BaseController
+class ReportController extends Controller
 {
-    use AuthorizesRequests, ValidatesRequests;
+    public function index()
+    {
+        $reports = Report::all(); // Получаем все записи
+        return view('report.index', compact('reports'));
+    }
 }

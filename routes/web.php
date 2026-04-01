@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\ReportController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/reports', function () {
+    return view('report.index');
+})->name('reports.index');
+
+Route::get('/reports/create', function () {
+    return view('report.create');
+})->name('reports.create');
+
