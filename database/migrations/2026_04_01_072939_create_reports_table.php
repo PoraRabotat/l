@@ -13,12 +13,10 @@ return new class extends Migration
 {
     Schema::create('reports', function (Blueprint $table) {
         $table->id();
-        
-        // Внешние ключи (связи)
+        $table->string('number');
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->foreignId('status_id')->constrained()->onDelete('cascade');
         
-        // Поля из задания (сверься с рисунком!)
         $table->text('text');
         $table->date('report_date')->nullable();
         
