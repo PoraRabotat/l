@@ -11,13 +11,13 @@
 
         <p>
             <label>Номер авто:</label><br>
-            <input type="text" name="car_number" value="{{ old('car_number', $report->car_number) }}">
-            @error('car_number') <span style="color:red">{{ $message }}</span> @enderror
+            <input type="text" name="number" value="{{ old('number', $report->number) }}">
+            @error('number') <span style="color:red">{{ $message }}</span> @enderror
         </p>
         <p>
             <label>Описание:</label><br>
-            <textarea name="description" rows="4" cols="50">{{ old('description', $report->description) }}</textarea>
-            @error('description') <span style="color:red">{{ $message }}</span> @enderror
+            <textarea name="text" rows="4" cols="50">{{ old('text', $report->text) }}</textarea>
+            @error('text') <span style="color:red">{{ $message }}</span> @enderror
         </p>
         <button type="submit">Обновить</button>
     </form>

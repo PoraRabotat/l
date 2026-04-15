@@ -11,16 +11,16 @@
         </tr>
         @foreach($reports as $report)
         <tr>
-            <td>{{ $report->car_number }}</td>
-            <td>{{ $report->description }}</td>
+            <td>{{ $report->number }}</td>
+            <td>{{ $report->text }}</td>
             <td>{{ $report->created_at->format('d.m.Y H:i') }}</td>
             <td>
+                <a href="{{ route('reports.show', $report) }}">Редактировать</a> | 
                 <form action="{{ route('reports.destroy', $report) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
                     <button type="submit" onclick="return confirm('Удалить заявление?')">Удалить</button>
                 </form><!-- Кнопки удаления/редактирования добавим на следующих шагах -->
-                <a href="{{ route('reports.show', $report) }}">Редактировать</a> | 
             </td>
         </tr>
         @endforeach

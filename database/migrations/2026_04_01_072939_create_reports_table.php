@@ -10,17 +10,17 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
+    {
     Schema::create('reports', function (Blueprint $table) {
         $table->id();
         $table->string('number');
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');
-        $table->foreignId('status_id')->constrained()->onDelete('cascade');
+        $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+        $table->foreignId('status_id')->nullable()->constrained()->onDelete('cascade');
         $table->text('text');
         $table->date('report_date')->nullable();
         $table->timestamps();
     });
-}
+        }
     /**
      * Reverse the migrations.
      */

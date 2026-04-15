@@ -10,6 +10,6 @@ class Report extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['car_number', 'description']; // понадобится для Create/Update
+    protected $fillable = ['number', 'text']; // понадобится для Create/Update
 }
 
