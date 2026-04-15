@@ -12,13 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->softDeletes(); // Добавляет колонку deleted_at
+         $table->softDeletes(); // создаст столбец deleted_at
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::table('reports', function (Blueprint $table) {

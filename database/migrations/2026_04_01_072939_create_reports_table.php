@@ -16,10 +16,8 @@ return new class extends Migration
         $table->string('number');
         $table->foreignId('user_id')->constrained()->onDelete('cascade');
         $table->foreignId('status_id')->constrained()->onDelete('cascade');
-        
         $table->text('text');
         $table->date('report_date')->nullable();
-        
         $table->timestamps();
     });
 }

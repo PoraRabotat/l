@@ -12,15 +12,6 @@ class ReportController extends Controller
         $reports = Report::all();
         return view("report.index", compact("reports"));
     }
-
-    public function destroy(Report $report)
-    {
-        $report->delete(); // благодаря SoftDeletes запись не удалится физически, а помечается deleted_at
-        return redirect()->route('reports.index');
-    }
-
-
-
     public function create()
     {
         return view('report.create');
@@ -37,7 +28,6 @@ class ReportController extends Controller
 
         return redirect()->route('reports.index')->with('success', 'Заявление создано');
     }
-
 
     public function show(Report $report)
     {
