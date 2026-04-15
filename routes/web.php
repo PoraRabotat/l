@@ -12,13 +12,22 @@ use App\Http\Controllers\ReportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-
-Route::get('/reports', function () {
-    return view('report.index');
-})->name('reports.index');
+Route::get('/reports', [ReportController::class, 'index'])
+->name('reports.index');
 
 Route::get('/reports/create', function () {
     return view('report.create');
 })->name('reports.create');
 
+Route::delete('/reports/{report}', [ReportController::class, 'destroy'])
+->name('reports.destroy');
+
+Route::get('/reports/create', [ReportController::class, 'create'])
+->name('reports.create');
+Route::post('/reports', [ReportController::class, 'store'])
+->name('reports.store');
+
+Route::get('/reports/{report}', [ReportController::class, 'show'])
+->name('reports.show');
+Route::put('/reports/{report}', [ReportController::class, 'update'])
+->name('reports.update');

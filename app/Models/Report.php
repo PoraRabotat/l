@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
 class Report extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
-    protected $fillable = [
-        'user_id',
-        'status_id',
-        'text',
-        'report_date',
-        'car_number'  
-    ];
+    use SoftDeletes;
+
+    protected $fillable = ['car_number', 'description']; // понадобится для Create/Update
 }
+

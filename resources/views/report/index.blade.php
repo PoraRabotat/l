@@ -21,8 +21,9 @@
 <body>
 
 <nav>
-    <a href="{{ route('home') }}">← На главную</a>
+    <a href="{{ route('reports.index') }}">← На главную</a>
     <a href="{{ route('reports.create') }}" class="btn btn-create">Создать заявление</a>
+    
 </nav>
 
 <h1>Список заявлений</h1>
@@ -47,7 +48,7 @@
                 <td>
                     <a href="{{ route('reports.show', $report->id) }}" class="btn btn-view">Просмотр</a>
                     <a href="{{ route('reports.edit', $report->id) }}" class="btn btn-edit">Редактировать</a>
-                    
+                     | 
                     <!-- Форма удаления -->
                     <form action="{{ route('reports.destroy', $report->id) }}" method="POST" style="display: inline;">
                         @csrf
