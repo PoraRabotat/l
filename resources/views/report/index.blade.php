@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><title>Список заявлений</title></head>
+<head> 
+    @Vite(['resources/css/app.css', 'resources/js/app.js'])
+    <title>Список заявлений</title>
+</head>
 <body>
     <h1>Заявления</h1>
 
@@ -49,7 +52,7 @@
         @endforeach
 
         <div class="mt-4">
-            {{ $reports->links() }}
+            {{ $reports->appends(request()->query())->links() }}
         </div>
     </table>
 

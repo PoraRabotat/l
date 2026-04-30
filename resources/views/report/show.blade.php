@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><title>Редактировать заявление</title></head>
+<head>
+    
+    <title>Редактировать заявление</title>
+</head>
 <body>
     <h1>Редактирование заявления #{{ $report->id }}</h1>
     <a href="{{ route('reports.index') }}">← Назад к списку</a>

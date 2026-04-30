@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<head><title>Создать заявление</title></head>
+<head>
+    
+    <title>Создать заявление</title>
+</head>
 <body>
     <h1>Новое заявление</h1>
     <a href="{{ route('reports.index') }}">← Назад к списку</a>
