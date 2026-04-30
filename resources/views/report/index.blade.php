@@ -7,7 +7,7 @@
 
     <table border="1" cellpadding="5" cellspacing="0">
         <tr>
-            <th>№ Авто</th><th>Описание</th><th>Дата создания</th><th>Действия</th>
+            <th>№ Авто</th><th>Описание</th><th>Дата создания</th><th>Действия</th><th>Статус</th>
         </tr>
         @foreach($reports as $report)
         <tr>
@@ -22,6 +22,7 @@
                     <button type="submit" onclick="return confirm('Удалить заявление?')">Удалить</button>
                 </form><!-- Кнопки удаления/редактирования добавим на следующих шагах -->
             </td>
+            <td>{{ $report->status->name ?? 'Без статуса' }}</td>
         </tr>
         @endforeach
     </table>
