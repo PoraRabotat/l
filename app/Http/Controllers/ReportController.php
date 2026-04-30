@@ -4,19 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Report;
 use Illuminate\Http\Request;
+use App\Models\Status;
 
 class ReportController extends Controller
 {
-    public function index()
-    {
-        $reports = Report::with('status')->paginate(10); 
-        return view("report.index", compact("reports"));
-    }
 
+    public function index(Request $request)
+    {
+        $sort = $request->query('sort', 'created_at_desc');
+        $statusFilter = $request->query('status'); // null, если фильтр не выбран
+
+        $query = Report::with('status');
+        // фильтрация
+        if ($statusFilter) {
+            $query->where('status_id', $statusFilter);
+        }
+        // сортировать
+        if ($sort === 'created_at_asc') {
+            $query->orderBy('created_at', 'asc');
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        $reports = $query->paginate(10);
+        $statuses = Status::all();
+
+        return view('report.index', compact('reports', 'sort', 'statusFilter', 'statuses'));
+    }
     
     public function destroy(Report $report)
     {
-        $report->delete(); // благодаря SoftDeletes запись не удалится физически, а помечается deleted_at
+        $report->delete(); // запись не удалится физически, а помечается deleted_at
         return redirect()->route('reports.index');
     }
 
