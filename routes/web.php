@@ -1,7 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use Illuminate\Support\Facades\Route;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,6 +15,21 @@ use App\Http\Controllers\ReportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ReportController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ReportController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ReportController::class, 'destroy'])->name('profile.destroy');
+});
+
 Route::get('/reports', [ReportController::class, 'index'])
 ->name('reports.index');
 
@@ -33,3 +51,5 @@ Route::get('/reports/{report}', [ReportController::class, 'show'])
 ->name('reports.show');
 Route::put('/reports/{report}', [ReportController::class, 'update'])
 ->name('reports.update');
+
+require __DIR__.'/auth.php';
