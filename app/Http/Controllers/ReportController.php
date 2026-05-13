@@ -86,4 +86,16 @@ class ReportController extends Controller
             abort(403, 'Доступ запрещён: это не ваше заявление.');
         }
     }
+
+    public function statusUpdate(Request $request, Report $report)
+    {
+        // Валидация
+        $request->validate([
+            'status_id' => 'required|exists:statuses,id',
+        ]);
+        
+        $report->update(['status_id' => $request->status_id]);
+
+        return redirect()->back()->with('success', 'Статус заявки обновлён.');
+    }
 }
