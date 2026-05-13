@@ -34,8 +34,9 @@ class ReportController extends Controller
     
     public function destroy(Report $report)
     {
-        $report->delete(); // запись не удалится физически, а помечается deleted_at
-        return redirect()->route('reports.index');
+        $this->authorizeReport($report);
+        $report->delete();
+        return redirect()->route('reports.index')->with('success', 'Удалено');
     }
 
 
@@ -51,6 +52,9 @@ class ReportController extends Controller
             'text' => 'required|string',
         ]);
 
+        $validated['status_id'] = 1;
+        $validated['user_id'] = auth()->id();
+
         Report::create($validated);
 
         return redirect()->route('reports.index')->with('success', 'Заявление создано');
@@ -59,18 +63,27 @@ class ReportController extends Controller
 
     public function show(Report $report)
     {
+        $this->authorizeReport($report);
         return view('report.show', compact('report'));
     }
 
     public function update(Request $request, Report $report)
     {
+        $this->authorizeReport($report);
+
         $validated = $request->validate([
             'number'  => 'required|string|max:20',
             'text' => 'required|string',
         ]);
 
         $report->update($validated);
+        return redirect()->route('reports.index')->with('success', 'Обновлено');
+    }
 
-        return redirect()->route('reports.index')->with('success', 'Заявление обновлено');
+    private function authorizeReport(Report $report)
+    {
+        if ($report->user_id !== auth()->id()) {
+            abort(403, 'Доступ запрещён: это не ваше заявление.');
+        }
     }
 }
