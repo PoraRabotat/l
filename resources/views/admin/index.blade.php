@@ -29,8 +29,8 @@
                             <td class="px-4 py-2">
                                 {{ $report->user->lastname ?? '' }} {{ $report->user->name ?? '' }} {{ $report->user->middlename ?? '' }}
                             </td>
-                            <td class="px-4 py-2 max-w-xs truncate">{{ $report->description }}</td>
-                            <td class="px-4 py-2 font-mono">{{ $report->car_number }}</td>
+                            <td class="px-4 py-2 max-w-xs truncate">{{ $report->text }}</td>
+                            <td class="px-4 py-2 font-mono">{{ $report->number }}</td>
                             <td class="px-4 py-2">
                                 <!-- Форма смены статуса -->
                                 <form class="status-form" action="{{ route('reports.status.update', $report->id) }}" method="POST">
