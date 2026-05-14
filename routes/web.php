@@ -59,6 +59,10 @@ Route::get('/reports/{report}', [ReportController::class, 'show'])
 Route::put('/reports/{report}', [ReportController::class, 'update'])
 ->name('reports.update');
 
+Route::get('/index', fn() => view('index'))->name('home');
+Route::get('/second', fn() => view('second'))->name('second');
+
+
 use App\Http\Controllers\AdminController;
 use App\Http\Middleware\Admin;
 
